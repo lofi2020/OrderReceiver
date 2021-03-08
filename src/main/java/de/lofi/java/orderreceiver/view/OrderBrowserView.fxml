@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.cathive.fonts.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane prefHeight="640.0" prefWidth="860.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="45" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="45" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.lofi.java.orderreceiver.controller.OrderBrowserController">
+    <AnchorPane fx:id="headAnchorPane" prefHeight="45" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <HBox fx:id="appToolBar" alignment="CENTER" styleClass="appToolBar" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+            <children>
+                <FontAwesomeIconView fx:id="settingIcon" alignment="CENTER_LEFT" icon="ICON_COG" onMouseClicked="#onSettingIconAction" textFill="WHITE">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </FontAwesomeIconView>
+                <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Auftragsverwaltung" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+                <HBox alignment="CENTER_RIGHT" spacing="40">
+               <children>
+                  <FontAwesomeIconView fx:id="windowMaximizeIcon" icon="ICON_FULLSCREEN" onMouseClicked="#onWindowMaximizeIcon" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font></FontAwesomeIconView>
+                   <FontAwesomeIconView fx:id="windowMinimizeIcon" icon="ICON_MINUS" onMouseClicked="#onWindowsMinimizeIconAction" textFill="WHITE">
+                       <font>
+                           <Font size="25.0" />
+                       </font></FontAwesomeIconView>
+                  <FontAwesomeIconView fx:id="windowCloseIcon" icon="ICON_REMOVE" onMouseClicked="#onWindowCloseIconAction" textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font></FontAwesomeIconView>
+               </children></HBox>
+
+            </children>
+        </HBox>
+    </AnchorPane>
+    <AnchorPane fx:id="contentAnchorPane" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="45">
+
+    <SplitPane fx:id="orderSplitPane" dividerPositions="0.35" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <items>
+            <AnchorPane>
+                <BorderPane fx:id="leftBorderPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                    <center>
+                        <BorderPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                            <center>
+                                    <ListView fx:id="orderListView" BorderPane.alignment="CENTER" />
+                            </center>
+                            <bottom>
+                                <ToolBar prefHeight="45.0" BorderPane.alignment="CENTER">
+                                    <items>
+                                        <Button fx:id="listEditButton" mnemonicParsing="false" onAction="#onListEditButtonAction" text="Bearbeiten" />
+                                        <Button fx:id="selectAllButton" mnemonicParsing="false" onAction="#onSelectAllButtonAction" text="Alles Auswählen" />
+                                        <Button fx:id="orderDeleteButton" mnemonicParsing="false" onAction="#onOrderDeleteButton" text="Löschen" />
+                                    </items>
+                                </ToolBar>
+                            </bottom>
+                        </BorderPane>
+                    </center>
+                    <top>
+                        <ToolBar prefHeight="45.0" BorderPane.alignment="CENTER">
+                            <items>
+                                <HBox alignment="CENTER" spacing="20" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" HBox.hgrow="ALWAYS">
+                                    <padding>
+                                        <Insets left="10.0" right="10.0" />
+                                    </padding>
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Label fx:id="orderListTitle" text="">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                        </HBox>
+                                        <FontAwesomeIconView fx:id="refreshIcon" icon="ICON_REFRESH" onMouseClicked="#onRefreshIconAction">
+                                            <font>
+                                                <Font size="25.0" />
+                                            </font>
+                                        </FontAwesomeIconView>
+                                    </children>
+                                </HBox>
+
+                            </items>
+                        </ToolBar>
+                    </top>
+                </BorderPane>
+
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <BorderPane fx:id="rightBorderPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+                    <bottom>
+                        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="45.0" prefWidth="495.0" BorderPane.alignment="CENTER">
+                            <items>
+                                <Label fx:id="statusLabel">
+                                    <padding>
+                                        <Insets left="10.0" right="10.0" />
+                                    </padding></Label>
+                            </items>
+                            <padding>
+                                <Insets left="10.0" right="10.0" />
+                            </padding>
+                        </ToolBar>
+                    </bottom>
+                    <center>
+                        <BorderPane fx:id="orderViewBorderPane" BorderPane.alignment="CENTER">
+                            <left>
+                                <VBox prefWidth="180" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" >
+                                    <HBox spacing="20" prefHeight="45" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"  styleClass="titleBar" alignment="CENTER">
+                                        <children>
+                                            <Label fx:id="fileListViewTitle" text="Alle Dateien">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font></Label>
+
+                                            <FontAwesomeIconView fx:id="printAllFilescon" icon="ICON_PRINT" onMouseClicked="#onPrintAllFilesIconAction">
+                                                <font>
+                                                    <Font size="25.0" />
+                                                </font>
+                                            </FontAwesomeIconView>
+                                        </children>
+                                    </HBox>
+                                    <ListView fx:id="fileListView" BorderPane.alignment="TOP_CENTER" VBox.vgrow="ALWAYS" />
+                                </VBox>
+                            </left>
+                            <center>
+                                <AnchorPane style="-fx-background-color: a1a1a1;">
+                                    <HBox alignment="CENTER"spacing="20" prefHeight="50" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"  styleClass="titleBar">
+                                        <Label fx:id="orderViewTitle" >
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <FontAwesomeIconView fx:id="printIcon" icon="ICON_PRINT" onMouseClicked="#onPrintIconAction" >
+                                            <font>
+                                                <Font size="25.0" />
+                                            </font>
+                                        </FontAwesomeIconView>
+
+                                    </HBox>
+                                    <HBox alignment="CENTER" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="55" VBox.vgrow="ALWAYS">
+                                        <WebView fx:id="webView" prefWidth="240" />
+                                    </HBox>
+                                </AnchorPane>
+                            </center>
+                        </BorderPane>
+                    </center>
+                </BorderPane>
+
+            </AnchorPane>
+        </items>
+    </SplitPane>
+
+    </AnchorPane>
+</AnchorPane>
